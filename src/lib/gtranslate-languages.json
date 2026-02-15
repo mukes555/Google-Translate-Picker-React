@@ -1,0 +1,841 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2026-02-11",
+    "available_sizes": [16, 20, 24, 32, 48, 64]
+  },
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "native": "English",
+      "flag_emoji": "🇺🇸",
+      "country_code": "us",
+      "flag_verified": true
+    },
+    {
+      "code": "af",
+      "name": "Afrikaans",
+      "native": "Afrikaans",
+      "flag_emoji": "🇿🇦",
+      "country_code": "za",
+      "flag_verified": true
+    },
+    {
+      "code": "sq",
+      "name": "Albanian",
+      "native": "Shqip",
+      "flag_emoji": "🇦🇱",
+      "country_code": "al",
+      "flag_verified": true
+    },
+    {
+      "code": "am",
+      "name": "Amharic",
+      "native": "አማርኛ",
+      "flag_emoji": "🇪🇹",
+      "country_code": "et",
+      "flag_verified": true
+    },
+    {
+      "code": "ar",
+      "name": "Arabic",
+      "native": "العربية",
+      "flag_emoji": "🇸🇦",
+      "country_code": "sa",
+      "flag_verified": true
+    },
+    {
+      "code": "hy",
+      "name": "Armenian",
+      "native": "Հայերեն",
+      "flag_emoji": "🇦🇲",
+      "country_code": "am",
+      "flag_verified": true
+    },
+    {
+      "code": "az",
+      "name": "Azerbaijani",
+      "native": "Azərbaycan",
+      "flag_emoji": "🇦🇿",
+      "country_code": "az",
+      "flag_verified": true
+    },
+    {
+      "code": "eu",
+      "name": "Basque",
+      "native": "Euskara",
+      "flag_emoji": "🇪🇸",
+      "country_code": "es-ct",
+      "flag_verified": true
+    },
+    {
+      "code": "be",
+      "name": "Belarusian",
+      "native": "Беларуская",
+      "flag_emoji": "🇧🇾",
+      "country_code": "by",
+      "flag_verified": true
+    },
+    {
+      "code": "bn",
+      "name": "Bengali",
+      "native": "বাংলা",
+      "flag_emoji": "🇧🇩",
+      "country_code": "bd",
+      "flag_verified": true
+    },
+    {
+      "code": "bs",
+      "name": "Bosnian",
+      "native": "Bosanski",
+      "flag_emoji": "🇧🇦",
+      "country_code": "ba",
+      "flag_verified": true
+    },
+    {
+      "code": "bg",
+      "name": "Bulgarian",
+      "native": "Български",
+      "flag_emoji": "🇧🇬",
+      "country_code": "bg",
+      "flag_verified": true
+    },
+    {
+      "code": "ca",
+      "name": "Catalan",
+      "native": "Català",
+      "flag_emoji": "🇪🇸",
+      "country_code": "es-ct",
+      "flag_verified": true
+    },
+    {
+      "code": "ceb",
+      "name": "Cebuano",
+      "native": "Cebuano",
+      "flag_emoji": "🇵🇭",
+      "country_code": "ph",
+      "flag_verified": true
+    },
+    {
+      "code": "zh-CN",
+      "name": "Chinese (Simplified)",
+      "native": "简体中文",
+      "flag_emoji": "🇨🇳",
+      "country_code": "cn",
+      "flag_verified": true
+    },
+    {
+      "code": "zh-TW",
+      "name": "Chinese (Traditional)",
+      "native": "繁體中文",
+      "flag_emoji": "🇹🇼",
+      "country_code": "tw",
+      "flag_verified": true
+    },
+    {
+      "code": "co",
+      "name": "Corsican",
+      "native": "Corsu",
+      "flag_emoji": "🇫🇷",
+      "country_code": "fr",
+      "flag_verified": true
+    },
+    {
+      "code": "hr",
+      "name": "Croatian",
+      "native": "Hrvatski",
+      "flag_emoji": "🇭🇷",
+      "country_code": "hr",
+      "flag_verified": true
+    },
+    {
+      "code": "cs",
+      "name": "Czech",
+      "native": "Čeština",
+      "flag_emoji": "🇨🇿",
+      "country_code": "cz",
+      "flag_verified": true
+    },
+    {
+      "code": "da",
+      "name": "Danish",
+      "native": "Dansk",
+      "flag_emoji": "🇩🇰",
+      "country_code": "dk",
+      "flag_verified": true
+    },
+    {
+      "code": "nl",
+      "name": "Dutch",
+      "native": "Nederlands",
+      "flag_emoji": "🇳🇱",
+      "country_code": "nl",
+      "flag_verified": true
+    },
+    {
+      "code": "eo",
+      "name": "Esperanto",
+      "native": "Esperanto",
+      "flag_emoji": "🌐",
+      "country_code": "eo",
+      "flag_verified": true
+    },
+    {
+      "code": "et",
+      "name": "Estonian",
+      "native": "Eesti",
+      "flag_emoji": "🇪🇪",
+      "country_code": "ee",
+      "flag_verified": true
+    },
+    {
+      "code": "fi",
+      "name": "Finnish",
+      "native": "Suomi",
+      "flag_emoji": "🇫🇮",
+      "country_code": "fi",
+      "flag_verified": true
+    },
+    {
+      "code": "fr",
+      "name": "French",
+      "native": "Français",
+      "flag_emoji": "🇫🇷",
+      "country_code": "fr",
+      "flag_verified": true
+    },
+    {
+      "code": "fy",
+      "name": "Frisian",
+      "native": "Frysk",
+      "flag_emoji": "🇳🇱",
+      "country_code": "nl",
+      "flag_verified": true
+    },
+    {
+      "code": "gl",
+      "name": "Galician",
+      "native": "Galego",
+      "flag_emoji": "🇪🇸",
+      "country_code": "es",
+      "flag_verified": true
+    },
+    {
+      "code": "ka",
+      "name": "Georgian",
+      "native": "ქართული",
+      "flag_emoji": "🇬🇪",
+      "country_code": "ge",
+      "flag_verified": true
+    },
+    {
+      "code": "de",
+      "name": "German",
+      "native": "Deutsch",
+      "flag_emoji": "🇩🇪",
+      "country_code": "de",
+      "flag_verified": true
+    },
+    {
+      "code": "el",
+      "name": "Greek",
+      "native": "Ελληνικά",
+      "flag_emoji": "🇬🇷",
+      "country_code": "gr",
+      "flag_verified": true
+    },
+    {
+      "code": "gu",
+      "name": "Gujarati",
+      "native": "ગુજરાતી",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "ht",
+      "name": "Haitian Creole",
+      "native": "Kreyòl Ayisyen",
+      "flag_emoji": "🇭🇹",
+      "country_code": "ht",
+      "flag_verified": true
+    },
+    {
+      "code": "ha",
+      "name": "Hausa",
+      "native": "Hausa",
+      "flag_emoji": "🇳🇬",
+      "country_code": "ng",
+      "flag_verified": true
+    },
+    {
+      "code": "haw",
+      "name": "Hawaiian",
+      "native": "ʻŌlelo Hawaiʻi",
+      "flag_emoji": "🇺🇸",
+      "country_code": "us",
+      "flag_verified": true
+    },
+    {
+      "code": "iw",
+      "name": "Hebrew",
+      "native": "עברית",
+      "flag_emoji": "🇮🇱",
+      "country_code": "il",
+      "flag_verified": true
+    },
+    {
+      "code": "hi",
+      "name": "Hindi",
+      "native": "हिन्दी",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "hmn",
+      "name": "Hmong",
+      "native": "Hmong",
+      "flag_emoji": "🇱🇦",
+      "country_code": "la",
+      "flag_verified": true
+    },
+    {
+      "code": "hu",
+      "name": "Hungarian",
+      "native": "Magyar",
+      "flag_emoji": "🇭🇺",
+      "country_code": "hu",
+      "flag_verified": true
+    },
+    {
+      "code": "is",
+      "name": "Icelandic",
+      "native": "Íslenska",
+      "flag_emoji": "🇮🇸",
+      "country_code": "is",
+      "flag_verified": true
+    },
+    {
+      "code": "ig",
+      "name": "Igbo",
+      "native": "Igbo",
+      "flag_emoji": "🇳🇬",
+      "country_code": "ng",
+      "flag_verified": true
+    },
+    {
+      "code": "id",
+      "name": "Indonesian",
+      "native": "Bahasa Indonesia",
+      "flag_emoji": "🇮🇩",
+      "country_code": "id",
+      "flag_verified": true
+    },
+    {
+      "code": "ga",
+      "name": "Irish",
+      "native": "Gaeilge",
+      "flag_emoji": "🇮🇪",
+      "country_code": "ie",
+      "flag_verified": true
+    },
+    {
+      "code": "it",
+      "name": "Italian",
+      "native": "Italiano",
+      "flag_emoji": "🇮🇹",
+      "country_code": "it",
+      "flag_verified": true
+    },
+    {
+      "code": "ja",
+      "name": "Japanese",
+      "native": "日本語",
+      "flag_emoji": "🇯🇵",
+      "country_code": "jp",
+      "flag_verified": true
+    },
+    {
+      "code": "jw",
+      "name": "Javanese",
+      "native": "Basa Jawa",
+      "flag_emoji": "🇮🇩",
+      "country_code": "id",
+      "flag_verified": true
+    },
+    {
+      "code": "kn",
+      "name": "Kannada",
+      "native": "ಕನ್ನಡ",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "kk",
+      "name": "Kazakh",
+      "native": "Қазақ",
+      "flag_emoji": "🇰🇿",
+      "country_code": "kz",
+      "flag_verified": true
+    },
+    {
+      "code": "km",
+      "name": "Khmer",
+      "native": "ភាសាខ្မែរ",
+      "flag_emoji": "🇰🇭",
+      "country_code": "kh",
+      "flag_verified": true
+    },
+    {
+      "code": "ko",
+      "name": "Korean",
+      "native": "한국어",
+      "flag_emoji": "🇰🇷",
+      "country_code": "kr",
+      "flag_verified": true
+    },
+    {
+      "code": "ku",
+      "name": "Kurdish",
+      "native": "Kurdî",
+      "flag_emoji": "🇹🇷",
+      "country_code": "tr",
+      "flag_verified": true
+    },
+    {
+      "code": "ky",
+      "name": "Kyrgyz",
+      "native": "Кыргызча",
+      "flag_emoji": "🇰🇬",
+      "country_code": "kg",
+      "flag_verified": true
+    },
+    {
+      "code": "lo",
+      "name": "Lao",
+      "native": "ລາວ",
+      "flag_emoji": "🇱🇦",
+      "country_code": "la",
+      "flag_verified": true
+    },
+    {
+      "code": "la",
+      "name": "Latin",
+      "native": "Latina",
+      "flag_emoji": "🇻🇦",
+      "country_code": "va",
+      "flag_verified": true
+    },
+    {
+      "code": "lv",
+      "name": "Latvian",
+      "native": "Latviešu",
+      "flag_emoji": "🇱🇻",
+      "country_code": "lv",
+      "flag_verified": true
+    },
+    {
+      "code": "lt",
+      "name": "Lithuanian",
+      "native": "Lietuvių",
+      "flag_emoji": "🇱🇹",
+      "country_code": "lt",
+      "flag_verified": true
+    },
+    {
+      "code": "lb",
+      "name": "Luxembourgish",
+      "native": "Lëtzebuergesch",
+      "flag_emoji": "🇱🇺",
+      "country_code": "lu",
+      "flag_verified": true
+    },
+    {
+      "code": "mk",
+      "name": "Macedonian",
+      "native": "Македонски",
+      "flag_emoji": "🇲🇰",
+      "country_code": "mk",
+      "flag_verified": true
+    },
+    {
+      "code": "mg",
+      "name": "Malagasy",
+      "native": "Malagasy",
+      "flag_emoji": "🇲🇬",
+      "country_code": "mg",
+      "flag_verified": true
+    },
+    {
+      "code": "ms",
+      "name": "Malay",
+      "native": "Bahasa Melayu",
+      "flag_emoji": "🇲🇾",
+      "country_code": "my",
+      "flag_verified": true
+    },
+    {
+      "code": "ml",
+      "name": "Malayalam",
+      "native": "മലയാളം",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "mt",
+      "name": "Maltese",
+      "native": "Malti",
+      "flag_emoji": "🇲🇹",
+      "country_code": "mt",
+      "flag_verified": true
+    },
+    {
+      "code": "mi",
+      "name": "Maori",
+      "native": "Te Reo Māori",
+      "flag_emoji": "🇳🇿",
+      "country_code": "nz",
+      "flag_verified": true
+    },
+    {
+      "code": "mr",
+      "name": "Marathi",
+      "native": "मराठी",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "mn",
+      "name": "Mongolian",
+      "native": "Монгол",
+      "flag_emoji": "🇲🇳",
+      "country_code": "mn",
+      "flag_verified": true
+    },
+    {
+      "code": "my",
+      "name": "Myanmar",
+      "native": "မြန်မာ",
+      "flag_emoji": "🇲🇲",
+      "country_code": "mm",
+      "flag_verified": true
+    },
+    {
+      "code": "ne",
+      "name": "Nepali",
+      "native": "नेपाली",
+      "flag_emoji": "🇳🇵",
+      "country_code": "np",
+      "flag_verified": true
+    },
+    {
+      "code": "no",
+      "name": "Norwegian",
+      "native": "Norsk",
+      "flag_emoji": "🇳🇴",
+      "country_code": "no",
+      "flag_verified": true
+    },
+    {
+      "code": "ny",
+      "name": "Nyanja",
+      "native": "Chichewa",
+      "flag_emoji": "🇲🇼",
+      "country_code": "mw",
+      "flag_verified": true
+    },
+    {
+      "code": "ps",
+      "name": "Pashto",
+      "native": "پښتو",
+      "flag_emoji": "🇦🇫",
+      "country_code": "af",
+      "flag_verified": true
+    },
+    {
+      "code": "fa",
+      "name": "Persian",
+      "native": "فارسی",
+      "flag_emoji": "🇮🇷",
+      "country_code": "ir",
+      "flag_verified": true
+    },
+    {
+      "code": "pl",
+      "name": "Polish",
+      "native": "Polski",
+      "flag_emoji": "🇵🇱",
+      "country_code": "pl",
+      "flag_verified": true
+    },
+    {
+      "code": "pt",
+      "name": "Portuguese",
+      "native": "Português",
+      "flag_emoji": "🇵🇹",
+      "country_code": "pt",
+      "flag_verified": true
+    },
+    {
+      "code": "pa",
+      "name": "Punjabi",
+      "native": "ਪੰਜਾਬੀ",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "ro",
+      "name": "Romanian",
+      "native": "Română",
+      "flag_emoji": "🇷🇴",
+      "country_code": "ro",
+      "flag_verified": true
+    },
+    {
+      "code": "ru",
+      "name": "Russian",
+      "native": "Русский",
+      "flag_emoji": "🇷🇺",
+      "country_code": "ru",
+      "flag_verified": true
+    },
+    {
+      "code": "sm",
+      "name": "Samoan",
+      "native": "Gagana Sāmoa",
+      "flag_emoji": "🇼🇸",
+      "country_code": "ws",
+      "flag_verified": true
+    },
+    {
+      "code": "gd",
+      "name": "Scots Gaelic",
+      "native": "Gàidhlig",
+      "flag_emoji": "🇬🇧",
+      "country_code": "gb-sct",
+      "flag_verified": true
+    },
+    {
+      "code": "sr",
+      "name": "Serbian",
+      "native": "Српски",
+      "flag_emoji": "🇷🇸",
+      "country_code": "rs",
+      "flag_verified": true
+    },
+    {
+      "code": "st",
+      "name": "Sesotho",
+      "native": "Sesotho",
+      "flag_emoji": "🇱🇸",
+      "country_code": "ls",
+      "flag_verified": true
+    },
+    {
+      "code": "sn",
+      "name": "Shona",
+      "native": "ChiShona",
+      "flag_emoji": "🇿🇼",
+      "country_code": "zw",
+      "flag_verified": true
+    },
+    {
+      "code": "sd",
+      "name": "Sindhi",
+      "native": "سنڌي",
+      "flag_emoji": "🇵🇰",
+      "country_code": "pk",
+      "flag_verified": true
+    },
+    {
+      "code": "si",
+      "name": "Sinhala",
+      "native": "සිංහල",
+      "flag_emoji": "🇱🇰",
+      "country_code": "lk",
+      "flag_verified": true
+    },
+    {
+      "code": "sk",
+      "name": "Slovak",
+      "native": "Slovenčina",
+      "flag_emoji": "🇸🇰",
+      "country_code": "sk",
+      "flag_verified": true
+    },
+    {
+      "code": "sl",
+      "name": "Slovenian",
+      "native": "Slovenščina",
+      "flag_emoji": "🇸🇮",
+      "country_code": "si",
+      "flag_verified": true
+    },
+    {
+      "code": "so",
+      "name": "Somali",
+      "native": "Soomaali",
+      "flag_emoji": "🇸🇴",
+      "country_code": "so",
+      "flag_verified": true
+    },
+    {
+      "code": "es",
+      "name": "Spanish",
+      "native": "Español",
+      "flag_emoji": "🇪🇸",
+      "country_code": "es",
+      "flag_verified": true
+    },
+    {
+      "code": "su",
+      "name": "Sundanese",
+      "native": "Basa Sunda",
+      "flag_emoji": "🇮🇩",
+      "country_code": "id",
+      "flag_verified": true
+    },
+    {
+      "code": "sw",
+      "name": "Swahili",
+      "native": "Kiswahili",
+      "flag_emoji": "🇰🇪",
+      "country_code": "ke",
+      "flag_verified": true
+    },
+    {
+      "code": "sv",
+      "name": "Swedish",
+      "native": "Svenska",
+      "flag_emoji": "🇸🇪",
+      "country_code": "se",
+      "flag_verified": true
+    },
+    {
+      "code": "tl",
+      "name": "Tagalog",
+      "native": "Tagalog",
+      "flag_emoji": "🇵🇭",
+      "country_code": "ph",
+      "flag_verified": true
+    },
+    {
+      "code": "tg",
+      "name": "Tajik",
+      "native": "Тоҷикӣ",
+      "flag_emoji": "🇹🇯",
+      "country_code": "tj",
+      "flag_verified": true
+    },
+    {
+      "code": "ta",
+      "name": "Tamil",
+      "native": "தமிழ்",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "te",
+      "name": "Telugu",
+      "native": "తెలుగు",
+      "flag_emoji": "🇮🇳",
+      "country_code": "in",
+      "flag_verified": true
+    },
+    {
+      "code": "th",
+      "name": "Thai",
+      "native": "ไทย",
+      "flag_emoji": "🇹🇭",
+      "country_code": "th",
+      "flag_verified": true
+    },
+    {
+      "code": "tr",
+      "name": "Turkish",
+      "native": "Türkçe",
+      "flag_emoji": "🇹🇷",
+      "country_code": "tr",
+      "flag_verified": true
+    },
+    {
+      "code": "uk",
+      "name": "Ukrainian",
+      "native": "Українська",
+      "flag_emoji": "🇺🇦",
+      "country_code": "ua",
+      "flag_verified": true
+    },
+    {
+      "code": "ur",
+      "name": "Urdu",
+      "native": "اردو",
+      "flag_emoji": "🇵🇰",
+      "country_code": "pk",
+      "flag_verified": true
+    },
+    {
+      "code": "uz",
+      "name": "Uzbek",
+      "native": "O'zbek",
+      "flag_emoji": "🇺🇿",
+      "country_code": "uz",
+      "flag_verified": true
+    },
+    {
+      "code": "vi",
+      "name": "Vietnamese",
+      "native": "Tiếng Việt",
+      "flag_emoji": "🇻🇳",
+      "country_code": "vn",
+      "flag_verified": true
+    },
+    {
+      "code": "cy",
+      "name": "Welsh",
+      "native": "Cymraeg",
+      "flag_emoji": "🇬🇧",
+      "country_code": "gb-wls",
+      "flag_verified": true
+    },
+    {
+      "code": "xh",
+      "name": "Xhosa",
+      "native": "isiXhosa",
+      "flag_emoji": "🇿🇦",
+      "country_code": "za",
+      "flag_verified": true
+    },
+    {
+      "code": "yi",
+      "name": "Yiddish",
+      "native": "ייִדיש",
+      "flag_emoji": "🇮🇱",
+      "country_code": "il",
+      "flag_verified": true
+    },
+    {
+      "code": "yo",
+      "name": "Yoruba",
+      "native": "Yorùbá",
+      "flag_emoji": "🇳🇬",
+      "country_code": "ng",
+      "flag_verified": true
+    },
+    {
+      "code": "zu",
+      "name": "Zulu",
+      "native": "isiZulu",
+      "flag_emoji": "🇿🇦",
+      "country_code": "za",
+      "flag_verified": true
+    }
+  ]
+}

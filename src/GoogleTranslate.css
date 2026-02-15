@@ -1,0 +1,485 @@
+:root {
+  --gtw-primary-color: #005EB8;
+  --gtw-primary-light: #1078D8;
+  --gtw-background-color: rgba(255, 255, 255, 1); /* Full opacity for best readability */
+  --gtw-text-color: #1a202c; /* Darker for better contrast */
+  --gtw-secondary-text-color: #4a5568; /* Much darker for better contrast (was #808080) */
+  --gtw-accent-color: rgba(0, 94, 184, 0.06);
+  --gtw-border-radius: 20px;
+  --gtw-panel-border: 1.5px solid var(--gtw-primary-color);
+  --gtw-font-family: Tahoma, Arial, sans-serif;
+  --gtw-z-index: 10000;
+  --gtw-box-shadow: 0 4px 20px rgba(0, 94, 184, 0.15), 0 1px 4px rgba(0, 0, 0, 0.06);
+  --gtw-backdrop-blur: 14px;
+  --gtw-overlay-color: rgba(0, 0, 0, 0.4);
+  --gtw-search-bg: rgba(0, 0, 0, 0.04);
+  --gtw-search-border: 1.5px solid transparent;
+  --gtw-search-text: inherit;
+  --gtw-button-padding: 10px 14px;
+  --gtw-button-radius: 50px;
+  --gtw-button-bg: rgba(255, 255, 255, 0.92);
+  --gtw-button-text: var(--gtw-text-color);
+  --gtw-button-border: 1.5px solid var(--gtw-primary-color);
+
+  /* Fab defaults */
+  --gtw-fab-bottom: 24px;
+  --gtw-fab-left: 24px;
+  --gtw-fab-right: auto;
+  /* Panel defaults */
+  --gtw-panel-width: 650px;
+  --gtw-sidebar-width: 350px;
+  --gtw-dropdown-width: 320px;
+}
+
+/* ─── Accessibility ─── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Google Translate Picker React: Hide default float widget UI ─── */
+#gt_float_wrapper {
+  display: none !important;
+}
+
+/* ─── Google Translate Picker React: Custom Floating Button (desktop) ─── */
+.gtw-desktop-fab {
+  position: fixed;
+  bottom: var(--gtw-fab-bottom);
+  left: var(--gtw-fab-left);
+  right: var(--gtw-fab-right);
+  top: var(--gtw-fab-top);
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--gtw-button-padding);
+  background: var(--gtw-button-bg);
+  backdrop-filter: blur(var(--gtw-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--gtw-backdrop-blur));
+  border: var(--gtw-button-border);
+  border-radius: var(--gtw-button-radius);
+  box-shadow: var(--gtw-box-shadow);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--gtw-button-text);
+}
+
+.gtw-desktop-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 94, 184, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: var(--gtw-primary-light);
+}
+
+.gtw-fab-emoji {
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gtw-fab-globe {
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.gtw-fab-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* ─── Google Translate Picker React: Responsive FAB visibility ─── */
+
+/* Default: FAB is visible. We only hide it if the user wants to use a custom trigger. */
+.gtw-desktop-fab {
+  display: flex;
+}
+
+/* On smaller screens (Tablets/Mobile), we adjust the FAB position if needed */
+@media (max-width: 1024px) {
+  .gtw-desktop-fab {
+    bottom: 20px;
+    right: 20px;
+    left: auto; /* Force to right side on smaller screens for better UX */
+  }
+}
+
+@media (max-width: 639px) {
+  .gtw-desktop-fab {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 12px;
+  }
+
+  .gtw-fab-label {
+    display: none; /* Hide label on very small screens to save space */
+  }
+}
+
+/* ─── Google Translate Picker React: Mobile Nav Trigger ─── */
+.gtw-mobile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--gtw-primary-color);
+  transition: background 0.2s ease;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.gtw-mobile-trigger:hover {
+  background: rgba(0, 94, 184, 0.06);
+}
+
+.gtw-mobile-emoji {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* ─── Google Translate Picker React: Language Picker Overlay ─── */
+.gtw-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--gtw-z-index);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gtw-fade-in 0.2s ease-out;
+}
+
+.gtw-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--gtw-overlay-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.gtw-panel {
+  position: relative;
+  width: 90%;
+  max-width: var(--gtw-panel-width);
+  max-height: 85vh;
+  background: var(--gtw-background-color);
+  backdrop-filter: blur(var(--gtw-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--gtw-backdrop-blur));
+  border: var(--gtw-panel-border);
+  border-radius: var(--gtw-border-radius);
+  box-shadow: var(--gtw-box-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: gtw-panel-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: max-width 0.3s ease;
+}
+
+@media (max-width: 639px) {
+  .gtw-panel {
+    width: 95%;
+    max-height: 90vh;
+  }
+}
+
+/* ─── Variants ─── */
+
+/* Sidebar Variants */
+.gtw-variant-sidebar-left .gtw-overlay,
+.gtw-variant-sidebar-right .gtw-overlay {
+  justify-content: flex-start;
+}
+
+.gtw-variant-sidebar-right .gtw-overlay {
+  justify-content: flex-end;
+}
+
+.gtw-variant-sidebar-left .gtw-panel,
+.gtw-variant-sidebar-right .gtw-panel {
+  width: var(--gtw-sidebar-width);
+  height: 100vh;
+  max-height: 100vh;
+  max-width: 90vw;
+  border-radius: 0;
+  border-top: none;
+  border-bottom: none;
+}
+
+@media (max-width: 1024px) {
+  .gtw-variant-sidebar-left .gtw-panel,
+  .gtw-variant-sidebar-right .gtw-panel {
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
+
+.gtw-variant-sidebar-left .gtw-panel {
+  border-left: none;
+  animation: gtw-slide-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gtw-variant-sidebar-right .gtw-panel {
+  border-right: none;
+  animation: gtw-slide-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dropdown Variant */
+.gtw-variant-dropdown .gtw-overlay {
+  background: transparent;
+  pointer-events: none;
+}
+
+.gtw-backdrop {
+  display: none;
+}
+
+.gtw-variant-dropdown .gtw-panel {
+  position: fixed;
+  top: var(--gtw-fab-top);
+  left: var(--gtw-fab-left);
+  right: var(--gtw-fab-right);
+  bottom: var(--gtw-fab-bottom);
+  width: var(--gtw-dropdown-width);
+  max-width: calc(100vw - 40px);
+  height: auto;
+  max-height: 450px;
+  pointer-events: auto;
+  animation: gtw-fade-in 0.2s ease-out;
+}
+
+@media (max-width: 639px) {
+  .gtw-variant-dropdown .gtw-panel {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: none;
+    bottom: 80px !important;
+    top: auto !important;
+  }
+}
+
+/* Offset panel from FAB based on position */
+.gtw-variant-dropdown .gtw-panel {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.gtw-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 94, 184, 0.1);
+}
+
+.gtw-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--gtw-text-color);
+}
+
+.gtw-panel-title svg {
+  color: var(--gtw-primary-color);
+}
+
+.gtw-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--gtw-secondary-text-color);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gtw-close-btn:hover {
+  background: rgba(0, 94, 184, 0.06);
+  color: var(--gtw-primary-color);
+}
+
+/* Search */
+.gtw-search-wrap {
+  position: relative;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(0, 94, 184, 0.08);
+}
+
+.gtw-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gtw-secondary-text-color);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.gtw-search-input {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border: var(--gtw-search-border);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--gtw-search-text);
+  background: var(--gtw-search-bg);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.gtw-search-input:focus {
+  border-color: var(--gtw-primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.08);
+  background: var(--gtw-background-color);
+}
+
+.gtw-search-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Language grid */
+.gtw-lang-grid {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: repeat(var(--gtw-grid-cols, 3), minmax(0, 1fr));
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gtw-primary-color) transparent;
+}
+
+.gtw-lang-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  min-width: 0;
+}
+
+.gtw-lang-item:hover {
+  background: var(--gtw-accent-color);
+  border-color: rgba(0, 94, 184, 0.1);
+  transform: translateY(-1px);
+}
+
+.gtw-lang-active {
+  background: var(--gtw-accent-color) !important;
+  border-color: var(--gtw-primary-color) !important;
+  box-shadow: 0 4px 12px rgba(0, 94, 184, 0.08);
+}
+
+.gtw-lang-emoji {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gtw-lang-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1px;
+}
+
+.gtw-lang-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gtw-text-color);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gtw-lang-native {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gtw-secondary-text-color);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gtw-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  color: var(--gtw-secondary-text-color);
+  font-size: 14px;
+}
+
+/* Animations */
+@keyframes gtw-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gtw-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes gtw-slide-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes gtw-slide-left {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Mobile panel adjustments */
+@media (max-width: 639px) {
+  .gtw-panel {
+    width: 95vw;
+    max-height: 85vh;
+    border-radius: 16px;
+  }
+
+  .gtw-lang-grid {
+    gap: 4px;
+  }
+
+  .gtw-lang-item {
+    padding: 7px 8px;
+  }
+}
