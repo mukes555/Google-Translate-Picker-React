@@ -23,8 +23,8 @@
     "paths": {
       "@/*": ["./*"],
       "google-translate-picker-react": ["../src/index.ts"],
-      "react": ["./node_modules/react"],
-      "react-dom": ["./node_modules/react-dom"],
+      "react": ["./node_modules/@types/react"],
+      "react-dom": ["./node_modules/@types/react-dom"],
       "lucide-react": ["./node_modules/lucide-react"]
     }
   },
