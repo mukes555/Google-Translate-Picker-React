@@ -22,7 +22,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "google-translate-picker-react": ["../src/index.ts"]
+      "google-translate-picker-react": ["../src/index.ts"],
+      "react": ["./node_modules/react"],
+      "react-dom": ["./node_modules/react-dom"],
+      "lucide-react": ["./node_modules/lucide-react"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
