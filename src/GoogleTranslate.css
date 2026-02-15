@@ -327,7 +327,7 @@
 
 .gtw-search-icon {
   position: absolute;
-  left: 14px;
+  left: 32px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--gtw-secondary-text-color);

@@ -53,15 +53,20 @@ function App() {
 | `variant` | `'modal' \| 'sidebar-left' \| 'sidebar-right' \| 'dropdown'` | `'modal'` | The UI layout style of the language picker. |
 | `theme` | `ThemeConfig` | `defaultTheme` | Object containing custom colors, borders, and effects. |
 | `buttonConfig` | `ButtonConfig` | `defaultButtonConfig` | Configuration for the floating trigger button. |
+| `mobileConfig` | `MobileConfig` | `undefined` | Overrides for mobile devices (<1024px). |
 | `availableLanguages` | `string[]` | `undefined` | Restrict the picker to specific language codes. |
 | `columns` | `number` | `3` | Number of columns in the language grid (Desktop). |
 | `mobileColumns` | `number` | `1` | Number of columns in the language grid (Mobile). |
+| `showFloatingButton` | `boolean` | `true` | Show/hide the floating trigger button. |
 | `showSearch` | `boolean` | `true` | Show/hide the search bar inside the picker. |
 | `showFlags` | `boolean` | `true` | Show/hide country flags next to language names. |
 | `showNativeNames` | `boolean` | `true` | Show/hide language names in their native script. |
 | `showTitle` | `boolean` | `true` | Show/hide the "Select Language" header title. |
+| `showToolbar` | `boolean` | `false` | Show/hide the Google Translate toolbar at the top. |
 | `labels` | `LabelsConfig` | `undefined` | Custom text for labels (title, search, no results, buttons). |
 | `onLanguageChange` | `(code: string) => void` | `undefined` | Callback function when a language is selected. |
+| `className` | `string` | `undefined` | Custom class name for the wrapper. |
+| `style` | `CSSProperties` | `undefined` | Custom inline styles for the wrapper. |
 
 ### Theme Configuration (`theme`)
 
@@ -89,6 +94,25 @@ function App() {
     showLabel: true,
     showFlag: true,
     offset: { x: 24, y: 24 }
+  }}
+/>
+```
+
+### Mobile Configuration (`mobileConfig`)
+
+Override specific settings for mobile devices (screens narrower than 1024px).
+
+```tsx
+<GoogleTranslate
+  mobileConfig={{
+    variant: 'sidebar-left', // Use sidebar on mobile
+    showSearch: false,       // Hide search on mobile
+    showFloatingButton: true, // Show/hide floating button on mobile
+    columns: 2,              // 2 columns grid on mobile
+    buttonConfig: {          // Custom button position for mobile
+      position: 'bottom-left',
+      shape: 'circle'
+    }
   }}
 />
 ```

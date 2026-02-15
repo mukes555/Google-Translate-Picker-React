@@ -22,8 +22,12 @@
     "i18n",
     "accessibility"
   ],
-  "author": "Open Source Contributor",
+  "author": "Mukes555",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mukes555/Google-Translate-Picker-React.git"
+  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

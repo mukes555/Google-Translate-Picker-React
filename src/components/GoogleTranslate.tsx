@@ -105,6 +105,16 @@ export interface GoogleTranslateProps {
     showNativeNames?: boolean;
     showTitle?: boolean;
     columns?: number;
+    showFloatingButton?: boolean;
+    /** Override button configuration on mobile */
+    buttonConfig?: {
+      position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+      offset?: { x: number; y: number };
+      shape?: 'circle' | 'square' | 'pill';
+      showGlobe?: boolean;
+      showLabel?: boolean;
+      showFlag?: boolean;
+    };
   };
   /** Whether to show the Google Translate toolbar (default: false) */
   showToolbar?: boolean;
@@ -227,38 +237,45 @@ export default function GoogleTranslate({
         showFlags,
         showNativeNames,
         showTitle,
-        columns: columns || 3,
+        columns: (isMobile && mobileColumns) ? mobileColumns : (columns || 3),
+        showFloatingButton,
       };
     }
 
     return {
       variant: mobileConfig.variant || variant,
-      showSearch: mobileConfig.showSearch !== false,
-      showFlags: mobileConfig.showFlags !== false,
-      showNativeNames: mobileConfig.showNativeNames !== false,
-      showTitle: mobileConfig.showTitle !== false,
+      showSearch: mobileConfig.showSearch !== undefined ? mobileConfig.showSearch : showSearch,
+      showFlags: mobileConfig.showFlags !== undefined ? mobileConfig.showFlags : showFlags,
+      showNativeNames: mobileConfig.showNativeNames !== undefined ? mobileConfig.showNativeNames : showNativeNames,
+      showTitle: mobileConfig.showTitle !== undefined ? mobileConfig.showTitle : showTitle,
       columns: mobileConfig.columns || mobileColumns || 1,
+      showFloatingButton: mobileConfig.showFloatingButton !== undefined ? mobileConfig.showFloatingButton : showFloatingButton,
     };
-  }, [isMobile, mobileConfig, variant, showSearch, showFlags, showNativeNames, showTitle, columns, mobileColumns]);
+  }, [isMobile, mobileConfig, variant, showSearch, showFlags, showNativeNames, showTitle, columns, mobileColumns, showFloatingButton]);
 
   // Defaults for buttonConfig
   const bConfig = useMemo(() => {
-    const showGlobe = buttonConfig?.showGlobe !== false;
-    const showLabel = buttonConfig?.showLabel !== false;
-    const showFlag = buttonConfig?.showFlag !== false;
+    // Determine the base config, allowing mobile overrides
+    const baseConfig = (isMobile && mobileConfig?.buttonConfig)
+      ? { ...buttonConfig, ...mobileConfig.buttonConfig }
+      : buttonConfig;
+
+    const showGlobe = baseConfig?.showGlobe !== false;
+    const showLabel = baseConfig?.showLabel !== false;
+    const showFlag = baseConfig?.showFlag !== false;
 
     // Safety check: ensure at least one element is visible
     const anyVisible = showGlobe || showLabel || showFlag;
 
     return {
-      position: buttonConfig?.position || 'bottom-left',
-      shape: buttonConfig?.shape || 'pill',
+      position: baseConfig?.position || 'bottom-left',
+      shape: baseConfig?.shape || 'pill',
       showGlobe: anyVisible ? showGlobe : true, // Fallback to globe if all hidden
       showLabel: showLabel,
       showFlag: showFlag,
-      offset: buttonConfig?.offset || { x: 24, y: 24 },
+      offset: baseConfig?.offset || { x: 24, y: 24 },
     };
-  }, [buttonConfig]);
+  }, [buttonConfig, isMobile, mobileConfig]);
 
   /* ── Filtered Languages ── */
   const supportedLanguages = useMemo(() => {
@@ -491,7 +508,7 @@ export default function GoogleTranslate({
       )}
 
       {/* Desktop floating button */}
-      {showFloatingButton && (
+      {responsiveSettings.showFloatingButton && (
         <button
             onClick={() => setIsOpen(true)}
             className="gtw-desktop-fab"

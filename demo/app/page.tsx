@@ -84,6 +84,7 @@ export default function Home() {
   const [showToolbar, setShowToolbar] = useState(false);
   const [columns, setColumns] = useState(3);
   const [mobileColumns, setMobileColumns] = useState(1);
+  const [mobileShowFloatingButton, setMobileShowFloatingButton] = useState(true);
   const [buttonConfig, setButtonConfig] = useState<{
     position: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
     shape: 'circle' | 'square' | 'pill';
@@ -122,7 +123,10 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
     offset: { x: ${buttonConfig.offset?.x}, y: ${buttonConfig.offset?.y} }
   }}
   columns={${columns}}
-  mobileColumns={${mobileColumns}}
+  mobileConfig={{
+    columns: ${mobileColumns},
+    showFloatingButton: ${mobileShowFloatingButton}
+  }}
   showFlags={${showFlags}}
   showSearch={${showSearch}}
   showNativeNames={${showNativeNames}}
@@ -165,6 +169,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
         if (parsed.showToolbar !== undefined) setShowToolbar(parsed.showToolbar);
         if (parsed.columns) setColumns(parsed.columns);
         if (parsed.mobileColumns) setMobileColumns(parsed.mobileColumns);
+        if (parsed.mobileShowFloatingButton !== undefined) setMobileShowFloatingButton(parsed.mobileShowFloatingButton);
         if (parsed.buttonConfig) setButtonConfig(parsed.buttonConfig);
         if (parsed.availableLangs) setAvailableLangs(parsed.availableLangs);
       } catch (e) {
@@ -176,10 +181,10 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
   useEffect(() => {
     const settings = {
       theme, variant, showFlags, showSearch, showNativeNames, showTitle, showToolbar,
-      columns, mobileColumns, buttonConfig, availableLangs
+      columns, mobileColumns, mobileShowFloatingButton, buttonConfig, availableLangs
     };
     localStorage.setItem('gtw-demo-settings', JSON.stringify(settings));
-  }, [theme, variant, showFlags, showSearch, showNativeNames, showTitle, showToolbar, columns, mobileColumns, buttonConfig, availableLangs]);
+  }, [theme, variant, showFlags, showSearch, showNativeNames, showTitle, showToolbar, columns, mobileColumns, mobileShowFloatingButton, buttonConfig, availableLangs]);
 
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-blue-100">
@@ -194,7 +199,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
           </div>
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com"
+              href="https://github.com/mukes555/Google-Translate-Picker-React"
               className="bg-slate-900 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-slate-800 transition-all active:scale-95 flex items-center gap-2"
             >
               <Github size={20} />
@@ -234,10 +239,15 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                 <Sparkles size={20} />
                 Try the Picker
               </button>
-              <button className="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:border-slate-300 transition-all active:scale-95 flex items-center justify-center gap-3">
+              <a
+                href="https://github.com/mukes555/Google-Translate-Picker-React"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:border-slate-300 transition-all active:scale-95 flex items-center justify-center gap-3"
+              >
                 <Github size={20} />
                 View on GitHub
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -432,14 +442,14 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                     <div className="space-y-6 pt-8 border-t border-slate-100">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-sm font-black text-slate-900 uppercase tracking-wider">Grid Configuration</label>
-                        <p className="text-sm text-slate-500">Control the number of columns for different devices.</p>
+                        <p className="text-sm text-slate-500">Control the number of columns for the language grid.</p>
                       </div>
 
-                      <div className="bg-slate-50/50 rounded-[2rem] p-6 border border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      <div className="bg-slate-50/50 rounded-[2rem] p-6 border border-slate-100">
                         <div className="space-y-4">
                           <div className="flex justify-between items-center">
                             <label id="desktop-grid-label" className="text-xs font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                              <Monitor size="14" /> Desktop
+                              <Monitor size="14" /> Desktop Columns
                             </label>
                             <span className="px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-black text-blue-600 shadow-sm">{columns} Cols</span>
                           </div>
@@ -458,11 +468,22 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                             ))}
                           </div>
                         </div>
+                      </div>
+                    </div>
 
+                    {/* Mobile Configuration */}
+                    <div className="space-y-6 pt-8 border-t border-slate-100">
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-black text-slate-900 uppercase tracking-wider">Mobile Configuration</label>
+                        <p className="text-sm text-slate-500">Customize layout and behavior for mobile devices.</p>
+                      </div>
+
+                      <div className="bg-slate-50/50 rounded-[2rem] p-6 border border-slate-100 space-y-8">
+                        {/* Mobile Grid */}
                         <div className="space-y-4">
                           <div className="flex justify-between items-center">
                             <label id="mobile-grid-label" className="text-xs font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                              <Smartphone size="14" /> Mobile
+                              <Smartphone size="14" /> Mobile Columns
                             </label>
                             <span className="px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-black text-blue-600 shadow-sm">{mobileColumns} Col</span>
                           </div>
@@ -481,21 +502,51 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                             ))}
                           </div>
                         </div>
+
+                        {/* Mobile Floating Button */}
+                         <button
+                            onClick={() => setMobileShowFloatingButton(!mobileShowFloatingButton)}
+                            aria-pressed={mobileShowFloatingButton}
+                            className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all ${
+                              mobileShowFloatingButton
+                                ? 'bg-white border-blue-600 shadow-sm'
+                                : 'bg-white border-slate-100 hover:border-blue-200'
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                               <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
+                                  mobileShowFloatingButton ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                               }`}>
+                                  <Smartphone size={20} />
+                               </div>
+                               <div className="text-left">
+                                  <span className={`text-sm font-black block ${mobileShowFloatingButton ? 'text-blue-900' : 'text-slate-900'}`}>Floating Button</span>
+                                  <span className="text-xs text-slate-500 font-bold">Show on mobile screens</span>
+                               </div>
+                            </div>
+                            <div className={`w-12 h-6 rounded-full relative transition-colors duration-300 ${
+                                mobileShowFloatingButton ? 'bg-blue-600' : 'bg-slate-200'
+                              }`}>
+                                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm transition-all duration-300 ${
+                                  mobileShowFloatingButton ? 'left-7' : 'left-1'
+                                }`} />
+                              </div>
+                          </button>
                       </div>
                     </div>
 
                     {/* Visibility Toggles - Premium Look */}
                     <div className="space-y-6 pt-8 border-t border-slate-100">
                       <div className="flex flex-col gap-1.5">
-                        <label id="visibility-options-label" className="text-sm font-black text-slate-900 uppercase tracking-wider">Visibility Options</label>
-                        <p className="text-sm text-slate-500">Fine-tune which UI elements are visible.</p>
+                        <label id="visibility-options-label" className="text-sm font-black text-slate-900 uppercase tracking-wider">Picker Panel Options</label>
+                        <p className="text-sm text-slate-500">Fine-tune which UI elements are visible in the language picker.</p>
                       </div>
                       <div className="grid grid-cols-2 gap-4" role="group" aria-labelledby="visibility-options-label">
                         {[
-                          { label: 'Show Flags', value: showFlags, setter: setShowFlags, desc: 'Country flags' },
-                          { label: 'Search Bar', value: showSearch, setter: setShowSearch, desc: 'Quick filtering' },
-                          { label: 'Native Names', value: showNativeNames, setter: setShowNativeNames, desc: 'Original script' },
-                          { label: 'Header Title', value: showTitle, setter: setShowTitle, desc: 'Section header' },
+                          { label: 'Show Flags', value: showFlags, setter: setShowFlags, desc: 'Flags in picker' },
+                          { label: 'Search Bar', value: showSearch, setter: setShowSearch, desc: 'Search in picker' },
+                          { label: 'Native Names', value: showNativeNames, setter: setShowNativeNames, desc: 'Native names in picker' },
+                          { label: 'Header Title', value: showTitle, setter: setShowTitle, desc: 'Header in picker' },
                           { label: 'Google Toolbar', value: showToolbar, setter: setShowToolbar, desc: 'Original banner' },
                         ].map((opt) => (
                           <button
@@ -890,9 +941,20 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                     </div>
 
                     <div className="pt-2">
-                      <span className="text-indigo-400">{'mobileColumns'}</span>
-                      <span className="text-white">{'='}</span>
-                      <span className="text-orange-400">{`{${mobileColumns}}`}</span>
+                      <span className="text-indigo-400">{'mobileConfig'}</span>
+                      <span className="text-white">{'={{'}</span>
+                      <div className="pl-4">
+                        <div>
+                          <span className="text-slate-500">{'columns: '}</span>
+                          <span className="text-orange-400">{`${mobileColumns}`}</span>
+                          <span className="text-white">{','}</span>
+                        </div>
+                        <div>
+                          <span className="text-slate-500">{'showFloatingButton: '}</span>
+                          <span className="text-orange-400">{`${mobileShowFloatingButton}`}</span>
+                        </div>
+                      </div>
+                      <span className="text-white">{'}}'}</span>
                     </div>
 
                     <div className="pt-2">
@@ -976,7 +1038,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
               <span>Google Translate Picker React</span>
             </div>
             <div className="flex gap-10 text-sm font-bold text-slate-500">
-              <a href="https://github.com" className="hover:text-blue-600 transition-colors">GitHub</a>
+              <a href="https://github.com/mukes555/Google-Translate-Picker-React" className="hover:text-blue-600 transition-colors">GitHub</a>
               <a href="#" className="hover:text-blue-600 transition-colors">NPM</a>
             </div>
             <p className="text-sm text-slate-400 font-medium">
@@ -998,7 +1060,10 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
         showTitle={showTitle}
         showToolbar={showToolbar}
         columns={columns}
-        mobileColumns={mobileColumns}
+        mobileConfig={{
+          columns: mobileColumns,
+          showFloatingButton: mobileShowFloatingButton,
+        }}
         availableLanguages={availableLangs}
         buttonConfig={buttonConfig}
       />
