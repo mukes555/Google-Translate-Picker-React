@@ -81,6 +81,7 @@ export default function Home() {
   const [showSearch, setShowSearch] = useState(true);
   const [showNativeNames, setShowNativeNames] = useState(true);
   const [showTitle, setShowTitle] = useState(true);
+  const [showToolbar, setShowToolbar] = useState(false);
   const [columns, setColumns] = useState(3);
   const [mobileColumns, setMobileColumns] = useState(1);
   const [buttonConfig, setButtonConfig] = useState<{
@@ -126,6 +127,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
   showSearch={${showSearch}}
   showNativeNames={${showNativeNames}}
   showTitle={${showTitle}}
+  showToolbar={${showToolbar}}
   ${availableLangs ? `availableLanguages={[${availableLangs.map(l => `'${l}'`).join(', ')}]}` : ''}
 />`;
     navigator.clipboard.writeText(code);
@@ -160,6 +162,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
         if (parsed.showSearch !== undefined) setShowSearch(parsed.showSearch);
         if (parsed.showNativeNames !== undefined) setShowNativeNames(parsed.showNativeNames);
         if (parsed.showTitle !== undefined) setShowTitle(parsed.showTitle);
+        if (parsed.showToolbar !== undefined) setShowToolbar(parsed.showToolbar);
         if (parsed.columns) setColumns(parsed.columns);
         if (parsed.mobileColumns) setMobileColumns(parsed.mobileColumns);
         if (parsed.buttonConfig) setButtonConfig(parsed.buttonConfig);
@@ -172,11 +175,11 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
 
   useEffect(() => {
     const settings = {
-      theme, variant, showFlags, showSearch, showNativeNames, showTitle,
+      theme, variant, showFlags, showSearch, showNativeNames, showTitle, showToolbar,
       columns, mobileColumns, buttonConfig, availableLangs
     };
     localStorage.setItem('gtw-demo-settings', JSON.stringify(settings));
-  }, [theme, variant, showFlags, showSearch, showNativeNames, showTitle, columns, mobileColumns, buttonConfig, availableLangs]);
+  }, [theme, variant, showFlags, showSearch, showNativeNames, showTitle, showToolbar, columns, mobileColumns, buttonConfig, availableLangs]);
 
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-blue-100">
@@ -493,6 +496,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                           { label: 'Search Bar', value: showSearch, setter: setShowSearch, desc: 'Quick filtering' },
                           { label: 'Native Names', value: showNativeNames, setter: setShowNativeNames, desc: 'Original script' },
                           { label: 'Header Title', value: showTitle, setter: setShowTitle, desc: 'Section header' },
+                          { label: 'Google Toolbar', value: showToolbar, setter: setShowToolbar, desc: 'Original banner' },
                         ].map((opt) => (
                           <button
                             key={opt.label}
@@ -512,6 +516,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                                 {opt.label.includes('Search') && <Search size={18} />}
                                 {opt.label.includes('Native') && <Sparkles size={18} />}
                                 {opt.label.includes('Header') && <Layout size={18} />}
+                                {opt.label.includes('Toolbar') && <Monitor size={18} />}
                               </div>
                               <div className={`w-12 h-6 rounded-full relative transition-colors duration-300 ${
                                 opt.value ? 'bg-blue-600' : 'bg-slate-200'
@@ -914,6 +919,12 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
                       <span className="text-orange-400">{`{${showTitle}}`}</span>
                     </div>
 
+                    <div className="pt-2">
+                      <span className="text-indigo-400">{'showToolbar'}</span>
+                      <span className="text-white">{'='}</span>
+                      <span className="text-orange-400">{`{${showToolbar}}`}</span>
+                    </div>
+
                     {availableLangs && (
                       <div className="pt-2">
                         <span className="text-indigo-400">{'availableLanguages'}</span>
@@ -985,6 +996,7 @@ ${Object.entries(theme).filter(([_, v]) => v !== undefined).map(([k, v]) => `   
         showSearch={showSearch}
         showNativeNames={showNativeNames}
         showTitle={showTitle}
+        showToolbar={showToolbar}
         columns={columns}
         mobileColumns={mobileColumns}
         availableLanguages={availableLangs}

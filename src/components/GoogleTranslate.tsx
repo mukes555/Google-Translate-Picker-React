@@ -106,6 +106,8 @@ export interface GoogleTranslateProps {
     showTitle?: boolean;
     columns?: number;
   };
+  /** Whether to show the Google Translate toolbar (default: false) */
+  showToolbar?: boolean;
   /** Callback when language changes */
   onLanguageChange?: (code: string) => void;
   /** Custom class name for the wrapper */
@@ -194,6 +196,7 @@ export default function GoogleTranslate({
   mobileColumns,
   mobileConfig,
   onLanguageChange,
+  showToolbar = false,
   className,
   style,
 }: GoogleTranslateProps) {
@@ -265,17 +268,27 @@ export default function GoogleTranslate({
 
   /* ── Bootstrap Google Translate script ── */
   useEffect(() => {
-    if (document.getElementById('google-translate-script')) return;
+    const initWidget = () => {
+      if ((window as any).google?.translate?.TranslateElement) {
+        new (window as any).google.translate.TranslateElement({
+          pageLanguage: defaultLanguage,
+          includedLanguages: supportedLanguages.map(l => l.code).join(','),
+          layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        }, 'google_translate_element');
+      }
+    };
+
+    if (document.getElementById('google-translate-script')) {
+       // If script is already loaded/loading, try to init
+       if ((window as any).google?.translate) {
+         initWidget();
+       }
+       return;
+    }
 
     // Standard Google Translate Element Init
-    (window as any).googleTranslateElementInit = () => {
-      new (window as any).google.translate.TranslateElement({
-        pageLanguage: defaultLanguage,
-        includedLanguages: supportedLanguages.map(l => l.code).join(','),
-        layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false,
-      }, 'google_translate_element');
-    };
+    (window as any).googleTranslateElementInit = initWidget;
 
     const s = document.createElement('script');
     s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
@@ -431,6 +444,51 @@ export default function GoogleTranslate({
         id="google_translate_element"
         style={{ position: 'fixed', top: -9999, left: -9999, opacity: 0, pointerEvents: 'none' }}
       />
+
+      {/* Hide toolbar if disabled */}
+      {!showToolbar && (
+        <style>{`
+          .goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+          }
+          .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+          }
+          body {
+            top: 0px !important;
+          }
+          .goog-te-balloon-frame {
+            display: none !important;
+            visibility: hidden !important;
+            box-shadow: none !important;
+          }
+          .goog-text-highlight {
+            background: none !important;
+            box-shadow: none !important;
+          }
+          #goog-gt-tt {
+            display: none !important;
+            visibility: hidden !important;
+          }
+          .goog-te-gadget-simple {
+             background-color: transparent !important;
+          }
+          .VIpgJd-ZVi9od-ORHb-OEVmcd {
+            display: none !important;
+            visibility: hidden !important;
+          }
+          .VIpgJd-ZVi9od-l4eHX-hSRGPd {
+            display: none !important;
+            visibility: hidden !important;
+          }
+        `}</style>
+      )}
 
       {/* Desktop floating button */}
       {showFloatingButton && (
