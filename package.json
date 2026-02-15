@@ -1,6 +1,6 @@
 {
   "name": "google-translate-picker-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A highly customizable React language picker for Google Translate Picker React",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
